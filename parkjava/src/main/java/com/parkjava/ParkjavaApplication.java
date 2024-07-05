@@ -12,6 +12,8 @@ public class ParkjavaApplication {
 		// push 확인 한번 더 합니다 ㅎㅎㅎ
 		
 		// dasdssdads
+		// 현준컴 푸시함
+		
 	}
 
 }
