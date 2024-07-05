@@ -8,7 +8,7 @@ public class ParkjavaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ParkjavaApplication.class, args);
-		//ddd
+		//ddd어어어어어어어 안
 	}
 
 }
