@@ -7,15 +7,15 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "test")
-public class test {
+@Table(name = "users")
+public class userModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
-    private String email;
+    private Long userIndex;
+    private String userName;
+    private String userId;
+    private String userPassword;
 
     // Getters and Setters
 
