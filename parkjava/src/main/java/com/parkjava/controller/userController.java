@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class userController {
 
     @Autowired
@@ -30,18 +30,18 @@ public class userController {
         return ResponseEntity.ok(user);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public userModel createUser(@RequestBody userModel user) {
         return userService.createUser(user);
     }
 
     @PutMapping("/update/{userIndex}")
     public ResponseEntity<userModel> updateUser(@PathVariable Long userIndex, @RequestBody userModel userDetails) {
-        userModel updateduser = userService.updateUser(userIndex, userDetails);
-        if (updateduser == null) {
+        userModel updateUser = userService.updateUser(userIndex, userDetails);
+        if (updateUser == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(updateduser);
+        return ResponseEntity.ok(updateUser);
     }
 
     @DeleteMapping("/delete/{userIndex}")

@@ -30,7 +30,7 @@ public class inquiryController {
         return ResponseEntity.ok(inquiry);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public inquiryModel createUser(@RequestBody inquiryModel inquiry) {
         return inquiryService.createUser(inquiry);
     }

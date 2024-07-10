@@ -30,7 +30,7 @@ public class noticeController {
         return ResponseEntity.ok(notice);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public noticeModel createNotice(@RequestBody noticeModel notice) {
         return noticeService.createNotice(notice);
     }
