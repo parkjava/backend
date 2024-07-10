@@ -30,7 +30,7 @@ public class penaltyController {
         return ResponseEntity.ok(penalty);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public penaltyModel createPenalty(@RequestBody penaltyModel penalty) {
         return penaltyService.createPenalty(penalty);
     }

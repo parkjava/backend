@@ -30,12 +30,12 @@ public class patrolController {
         return ResponseEntity.ok(patrol);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public patrolModel createPatrol(@RequestBody patrolModel patrol) {
         return patrolService.createPatrol(patrol);
     }
 
-    @PutMapping("/{patrolIndex}")
+    @PutMapping("/update/{patrolIndex}")
     public ResponseEntity<patrolModel> updatePatrol(@PathVariable Long patrolIndex, @RequestBody patrolModel patrolDetails) {
         patrolModel updatedTest = patrolService.updatePatrol(patrolIndex, patrolDetails);
         if (updatedTest == null) {
@@ -44,7 +44,7 @@ public class patrolController {
         return ResponseEntity.ok(updatedTest);
     }
 
-    @DeleteMapping("/{patrolIndex}")
+    @DeleteMapping("delete/{patrolIndex}")
     public ResponseEntity<Void> deletePatrol(@PathVariable Long patrolIndex) {
         patrolService.deletePatrol(patrolIndex);
         return ResponseEntity.noContent().build();

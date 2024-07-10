@@ -30,7 +30,7 @@ public class testController {
 		return ResponseEntity.ok(test);
 	}
 
-	@PostMapping
+	@PostMapping("/create")
 	public testModel createUser(@RequestBody testModel test) {
 		return testService.createUser(test);
 	}
