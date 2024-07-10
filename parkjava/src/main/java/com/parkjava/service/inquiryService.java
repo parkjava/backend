@@ -41,7 +41,7 @@ public class inquiryService {
         return null;
     }
 
-    public void deleteUser(Long id) {
-        inquiryRepository.deleteById(id);
+    public void deleteUser(Long inquiryIndex) {
+        inquiryRepository.deleteById(inquiryIndex);
     }
 }

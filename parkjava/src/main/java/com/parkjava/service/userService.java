@@ -25,8 +25,8 @@ public class userService {
         return userRepository.save(test);
     }
 
-    public userModel updateUser(Long id, userModel userDetails) {
-        userModel userModel = userRepository.findById(id).orElse(null);
+    public userModel updateUser(Long userIndex, userModel userDetails) {
+        userModel userModel = userRepository.findById(userIndex).orElse(null);
 
         if (userModel != null) {
             userModel.setUserName(userDetails.getUserName());
@@ -38,7 +38,7 @@ public class userService {
         return null;
     }
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public void deleteUser(Long userIndex) {
+        userRepository.deleteById(userIndex);
     }
 }

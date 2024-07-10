@@ -35,7 +35,7 @@ public class inquiryController {
         return inquiryService.createUser(inquiry);
     }
 
-    @PutMapping("/{inquiryIndex}")
+    @PutMapping("/update/{inquiryIndex}")
     public ResponseEntity<inquiryModel> updateUser(@PathVariable Long inquiryIndex, @RequestBody inquiryModel inquiryDetails) {
         inquiryModel updatedTest = inquiryService.updateUser(inquiryIndex, inquiryDetails);
         if (updatedTest == null) {
@@ -44,7 +44,7 @@ public class inquiryController {
         return ResponseEntity.ok(updatedTest);
     }
 
-    @DeleteMapping("/{inquiryIndex}")
+    @DeleteMapping("/delete/{inquiryIndex}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long inquiryIndex) {
         inquiryService.deleteUser(inquiryIndex);
         return ResponseEntity.noContent().build();

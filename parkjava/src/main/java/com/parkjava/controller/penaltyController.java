@@ -21,9 +21,9 @@ public class penaltyController {
         return penaltyService.getAllPenalty();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<penaltyModel> getPenaltyById(@PathVariable Long id) {
-        penaltyModel penalty = penaltyService.getPenaltyById(id);
+    @GetMapping("/{penaltyIndex}")
+    public ResponseEntity<penaltyModel> getPenaltyById(@PathVariable Long penaltyIndex) {
+        penaltyModel penalty = penaltyService.getPenaltyById(penaltyIndex);
         if (penalty == null) {
             return ResponseEntity.notFound().build();
         }
@@ -35,18 +35,18 @@ public class penaltyController {
         return penaltyService.createPenalty(penalty);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<penaltyModel> updatePenalty(@PathVariable Long id, @RequestBody penaltyModel penaltyDetails) {
-        penaltyModel updatedTest = penaltyService.updatePenalty(id, penaltyDetails);
+    @PutMapping("/update/{penaltyIndex}")
+    public ResponseEntity<penaltyModel> updatePenalty(@PathVariable Long penaltyIndex, @RequestBody penaltyModel penaltyDetails) {
+        penaltyModel updatedTest = penaltyService.updatePenalty(penaltyIndex, penaltyDetails);
         if (updatedTest == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedTest);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePenalty(@PathVariable Long id) {
-        penaltyService.deletePenalty(id);
+    @DeleteMapping("/delete/{penaltyIndex}")
+    public ResponseEntity<Void> deletePenalty(@PathVariable Long penaltyIndex) {
+        penaltyService.deletePenalty(penaltyIndex);
         return ResponseEntity.noContent().build();
     }
 }

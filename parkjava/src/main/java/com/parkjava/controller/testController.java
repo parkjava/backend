@@ -35,7 +35,7 @@ public class testController {
 		return testService.createUser(test);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<testModel> updateUser(@PathVariable Long id, @RequestBody testModel testDetails) {
 		testModel updatedTest = testService.updateUser(id, testDetails);
 		if (updatedTest == null) {
@@ -44,7 +44,7 @@ public class testController {
 		return ResponseEntity.ok(updatedTest);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
 		testService.deleteUser(id);
 		return ResponseEntity.noContent().build();

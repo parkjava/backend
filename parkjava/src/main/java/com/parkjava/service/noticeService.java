@@ -43,7 +43,7 @@ public class noticeService {
         return null;
     }
 
-    public void deleteNotice(Long id) {
-        noticeRepository.deleteById(id);
+    public void deleteNotice(Long noticeIndex) {
+        noticeRepository.deleteById(noticeIndex);
     }
 }
