@@ -21,9 +21,9 @@ public class noticeController {
         return noticeService.getAllNotices();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<noticeModel> getNoticeById(@PathVariable Long id) {
-        noticeModel notice = noticeService.getNoticeById(id);
+    @GetMapping("/{noticeIndex}")
+    public ResponseEntity<noticeModel> getNoticeById(@PathVariable Long noticeIndex) {
+        noticeModel notice = noticeService.getNoticeById(noticeIndex);
         if (notice == null) {
             return ResponseEntity.notFound().build();
         }
@@ -35,18 +35,18 @@ public class noticeController {
         return noticeService.createNotice(notice);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<noticeModel> updateNotice(@PathVariable Long id, @RequestBody noticeModel noticeDetails) {
-        noticeModel updatedTest = noticeService.updateNotice(id, noticeDetails);
+    @PutMapping("/update/{noticeIndex}")
+    public ResponseEntity<noticeModel> updateNotice(@PathVariable Long noticeIndex, @RequestBody noticeModel noticeDetails) {
+        noticeModel updatedTest = noticeService.updateNotice(noticeIndex, noticeDetails);
         if (updatedTest == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(updatedTest);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNotice(@PathVariable Long id) {
-        noticeService.deleteNotice(id);
+    @DeleteMapping("/delete/{noticeIndex}")
+    public ResponseEntity<Void> deleteNotice(@PathVariable Long noticeIndex) {
+        noticeService.deleteNotice(noticeIndex);
         return ResponseEntity.noContent().build();
     }
 }

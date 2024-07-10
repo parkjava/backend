@@ -35,7 +35,7 @@ public class userController {
         return userService.createUser(user);
     }
 
-    @PutMapping("/{userIndex}")
+    @PutMapping("/update/{userIndex}")
     public ResponseEntity<userModel> updateUser(@PathVariable Long userIndex, @RequestBody userModel userDetails) {
         userModel updateduser = userService.updateUser(userIndex, userDetails);
         if (updateduser == null) {
