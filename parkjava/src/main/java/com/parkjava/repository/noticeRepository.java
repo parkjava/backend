@@ -21,7 +21,7 @@ public interface noticeRepository extends JpaRepository<noticeModel, Long> {
     List<noticeModel> noticeTitleParam(String noticeTitle);
 
     @Query(value = "SElECT * FROM NOTICE WHERE USER_NAME = :userName", nativeQuery = true)
-    List<noticeModel> noticeNameParam(@Param("userName") String userName);
+    List<noticeModel> noticeNameParam(String userName);
 
 
 }
