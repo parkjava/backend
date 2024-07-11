@@ -7,15 +7,16 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "users")
-public class userModel {
+@Table(name = "park_java_admin")
+public class adminModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userIndex;
-    private String userName;
-    private String userId;
-    private String userPw;
+    private Long adminIndex;
+    private String adminName;
+    private String adminId;
+    private String adminPassword;
+
 
     // Getters and Setters
 

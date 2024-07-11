@@ -29,10 +29,10 @@ public class penaltyService {
         penaltyModel penalty = penaltyRepository.findById(penaltyIndex).orElse(null);
 
         if (penalty != null) {
-            penalty.setImageUrl(penaltyDetails.getImageUrl());
-            penalty.setCarNumber(penaltyDetails.getCarNumber());
+            penalty.setCarImageUrl(penaltyDetails.getCarImageUrl());
+            penalty.setPenaltyCarNumber(penaltyDetails.getPenaltyCarNumber());
             penalty.setPenaltyCash(penalty.getPenaltyCash());
-            penalty.setFineDate(penalty.getFineDate());
+            penalty.setPenaltyDate(penalty.getPenaltyDate());
             return penaltyRepository.save(penalty);
         }
 

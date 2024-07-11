@@ -35,14 +35,12 @@ public class noticeService {
         noticeModel notice = noticeRepository.findById(noticeIndex).orElse(null);
 
         if (notice != null) {
-            notice.setUserIndex(noticeDetails.getUserIndex());
-            notice.setUserName(noticeDetails.getUserName());
+            notice.setAdminIndex(noticeDetails.getAdminIndex());
+            notice.setAdminName(noticeDetails.getAdminName());
             notice.setNoticeTitle(noticeDetails.getNoticeTitle());
             notice.setNoticeContent(noticeDetails.getNoticeContent());
             notice.setNoticeView(notice.getNoticeView());
-            notice.setCreateDate(noticeDetails.getCreateDate());
             notice.setUpdateDate(noticeDetails.getUpdateDate());
-
             return noticeRepository.save(notice);
         }
 

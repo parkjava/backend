@@ -13,8 +13,8 @@ public class noticeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noticeIndex;
-    private Integer userIndex;
-    private String userName;
+    private Integer adminIndex;
+    private String adminName;
     private String noticeTitle;
     private String noticeContent;
     private Integer noticeView;
