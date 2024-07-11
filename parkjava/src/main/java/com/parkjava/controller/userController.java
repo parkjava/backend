@@ -2,6 +2,7 @@ package com.parkjava.controller;
 
 import com.parkjava.model.userModel;
 import com.parkjava.service.userService;
+import com.parkjava.repository.userRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,14 @@ public class userController {
 
     @Autowired
     private userService userService;
+
+    @Autowired
+    private userRepository userRepository;
+
+    @GetMapping("/find1User")
+    public List<userModel> find1User(){
+        return userRepository.find1User();
+    }
 
     @GetMapping
     public List<userModel> getAllUsers() {

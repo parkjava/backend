@@ -17,7 +17,7 @@ public class noticeModel {
     private String userName;
     private String noticeTitle;
     private String noticeContent;
-    private String noticeView;
+    private Integer noticeView;
     private String createDate;
     private String updateDate;
 
