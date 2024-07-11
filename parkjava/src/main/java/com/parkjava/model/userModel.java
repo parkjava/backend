@@ -15,7 +15,7 @@ public class userModel {
     private Long userIndex;
     private String userName;
     private String userId;
-    private String userPassword;
+    private String userPw;
 
     // Getters and Setters
 

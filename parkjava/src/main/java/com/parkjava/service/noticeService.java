@@ -18,7 +18,13 @@ public class noticeService {
     }
 
     public noticeModel getNoticeById(Long noticeIndex) {
+        noticeModel notice = noticeRepository.findById(noticeIndex).orElse(null);
+        if (notice != null) {
+            notice.setNoticeView(notice.getNoticeView() + 1);
+            noticeRepository.save(notice);
+        }
         return noticeRepository.findById(noticeIndex).orElse(null);
+
     }
 
     public noticeModel createNotice(noticeModel notice) {

@@ -31,7 +31,7 @@ public class userService {
         if (userModel != null) {
             userModel.setUserName(userDetails.getUserName());
             userModel.setUserId(userDetails.getUserId());
-            userModel.setUserPassword(userDetails.getUserPassword());
+            userModel.setUserPw(userDetails.getUserPw());
             return userRepository.save(userModel);
         }
 

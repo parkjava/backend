@@ -1,6 +1,7 @@
 package com.parkjava.controller;
 
 import com.parkjava.model.noticeModel;
+import com.parkjava.repository.noticeRepository;
 import com.parkjava.service.noticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ public class noticeController {
 
     @Autowired
     private noticeService noticeService;
+    @Autowired
+    private noticeRepository noticerepository;
 
     @GetMapping
     public List<noticeModel> getAllNotice() {
@@ -29,6 +32,27 @@ public class noticeController {
         }
         return ResponseEntity.ok(notice);
     }
+
+    @GetMapping("/titleAsc")
+    public List<noticeModel> noticeTitleAscAll() {
+        return noticerepository.noticeTitleAscAll();
+    }
+
+    @GetMapping("/titleDesc")
+    public List<noticeModel> noticeTitleDescAll() {
+        return noticerepository.noticeTitleDescAll();
+    }
+
+    @GetMapping("/title/{noticeTitle}")
+    public List<noticeModel> noticeTitleParam(@PathVariable("noticeTitle") String noticeTitle) {
+        return noticerepository.noticeTitleParam(noticeTitle);
+    }
+
+    @GetMapping("/name/{userName}")
+    public List<noticeModel> noticeNameParam(@PathVariable("userName") String userName) {
+        return noticerepository.noticeNameParam(userName);
+    }
+
 
     @PostMapping("/create")
     public noticeModel createNotice(@RequestBody noticeModel notice) {
