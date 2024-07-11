@@ -29,8 +29,8 @@ public class patrolService {
         patrolModel patrol = patrolRepository.findById(patrolIndex).orElse(null);
 
         if (patrol != null) {
-            patrol.setUserIndex(patrolDetails.getUserIndex());
-            patrol.setUserName(patrolDetails.getUserName());
+            patrol.setAdminIndex(patrolDetails.getAdminIndex());
+            patrol.setAdminName(patrolDetails.getAdminName());
             patrol.setPatrolArea(patrolDetails.getPatrolArea());
             patrol.setPatrolSummary(patrolDetails.getPatrolSummary());
             patrol.setCreateDate(patrolDetails.getCreateDate());

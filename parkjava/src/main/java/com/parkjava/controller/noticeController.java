@@ -48,9 +48,9 @@ public class noticeController {
         return noticerepository.noticeTitleParam(noticeTitle);
     }
 
-    @GetMapping("/name/{userName}")
-    public List<noticeModel> noticeNameParam(@PathVariable("userName") String userName) {
-        return noticerepository.noticeNameParam(userName);
+    @GetMapping("/name/{adminName}")
+    public List<noticeModel> noticeNameParam(@PathVariable("adminName") String adminName) {
+        return noticerepository.noticeNameParam(adminName);
     }
 
 
