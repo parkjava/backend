@@ -2,9 +2,13 @@ package com.parkjava.service;
 
 import com.parkjava.model.noticeModel;
 import com.parkjava.repository.noticeRepository;
+import org.hibernate.annotations.CurrentTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -17,16 +21,6 @@ public class noticeService {
         return noticeRepository.findAll();
     }
 
-    public noticeModel getNoticeById(Long noticeIndex) {
-        noticeModel notice = noticeRepository.findById(noticeIndex).orElse(null);
-        if (notice != null) {
-            notice.setNoticeView(notice.getNoticeView() + 1);
-            noticeRepository.save(notice);
-        }
-        return noticeRepository.findById(noticeIndex).orElse(null);
-
-    }
-
     public noticeModel createNotice(noticeModel notice) {
         return noticeRepository.save(notice);
     }
@@ -35,12 +29,12 @@ public class noticeService {
         noticeModel notice = noticeRepository.findById(noticeIndex).orElse(null);
 
         if (notice != null) {
-            notice.setAdminIndex(noticeDetails.getAdminIndex());
-            notice.setAdminName(noticeDetails.getAdminName());
             notice.setNoticeTitle(noticeDetails.getNoticeTitle());
             notice.setNoticeContent(noticeDetails.getNoticeContent());
-            notice.setNoticeView(notice.getNoticeView());
-            notice.setUpdateDate(noticeDetails.getUpdateDate());
+            // 현재 날짜와 시간 설정, 날짜/시/분 형식
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String formattedDateTime = LocalDateTime.now().format(formatter);
+            notice.setUpdateDate(formattedDateTime);
             return noticeRepository.save(notice);
         }
 

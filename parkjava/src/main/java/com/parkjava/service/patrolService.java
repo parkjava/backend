@@ -5,6 +5,8 @@ import com.parkjava.repository.patrolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -29,12 +31,13 @@ public class patrolService {
         patrolModel patrol = patrolRepository.findById(patrolIndex).orElse(null);
 
         if (patrol != null) {
-            patrol.setAdminIndex(patrolDetails.getAdminIndex());
-            patrol.setAdminName(patrolDetails.getAdminName());
             patrol.setPatrolArea(patrolDetails.getPatrolArea());
             patrol.setPatrolSummary(patrolDetails.getPatrolSummary());
-            patrol.setCreateDate(patrolDetails.getCreateDate());
-            patrol.setUpdateDate(patrolDetails.getUpdateDate());
+
+            // 현재 날짜와 시간 설정, 날짜/시/분 형식
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String formattedDateTime = LocalDateTime.now().format(formatter);
+            patrol.setUpdateDate(formattedDateTime);
             return patrolRepository.save(patrol);
         }
 
