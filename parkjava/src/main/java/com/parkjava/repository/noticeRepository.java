@@ -3,25 +3,38 @@ package com.parkjava.repository;
 import com.parkjava.model.noticeModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface noticeRepository extends JpaRepository<noticeModel, Long> {
+    @Query(value = "SELECT * FROM NOTICE", nativeQuery = true)
+    List<noticeModel> noticeSearchAll();
 
-    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_VIEW ASC", nativeQuery = true)
-    List<noticeModel> noticeTitleAscAll();
-
-    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_VIEW DESC", nativeQuery = true)
-    List<noticeModel> noticeTitleDescAll();
+    @Query(value = "SELECT * FROM NOTICE WHERE NOTICE_INDEX =: noticeIndex", nativeQuery = true)
+    List<noticeModel> noticeSearchIndex(Long noticeIndex);
 
     @Query(value = "SElECT * FROM NOTICE WHERE NOTICE_TITLE = :noticeTitle", nativeQuery = true)
-    List<noticeModel> noticeTitleParam(String noticeTitle);
+    List<noticeModel> noticeSearchTitle(String noticeTitle);
 
-    @Query(value = "SElECT * FROM NOTICE WHERE USER_NAME = :userName", nativeQuery = true)
-    List<noticeModel> noticeNameParam(String userName);
+    @Query(value = "SElECT * FROM NOTICE WHERE ADMIN_NAME = :adminName", nativeQuery = true)
+    List<noticeModel> noticeSearchName(String adminName);
+
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_TITLE ASC", nativeQuery = true)
+    List<noticeModel> noticeTitleAscAll();
+
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_TITLE DESC", nativeQuery = true)
+    List<noticeModel> noticeTitleDescAll();
+
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_VIEW ASC", nativeQuery = true)
+    List<noticeModel> noticeViewAscAll();
+
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_VIEW DESC", nativeQuery = true)
+    List<noticeModel> noticeViewDescAll();
+
+//    @Query(value ="UPDATE NOTICE SET NOTICE_TITLE= :noticeTitle, NOTICE_CONTENT= :noticeContent, UPDATE_DATE WHERE NOTICE_INDEX =:NOTICE_INDEX", nativeQuery = true)
+//    List<noticeModel> noticeUpdate(String noticeTitle, String noticeContent, Long noticeIndex);
 
 
 }
