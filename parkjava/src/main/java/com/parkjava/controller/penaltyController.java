@@ -1,6 +1,8 @@
 package com.parkjava.controller;
 
+import com.parkjava.model.noticeModel;
 import com.parkjava.model.penaltyModel;
+import com.parkjava.repository.penaltyRepository;
 import com.parkjava.service.penaltyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ public class penaltyController {
     @Autowired
     private penaltyService penaltyService;
 
+    @Autowired
+    private penaltyRepository penaltyRepository;
+
     @GetMapping
     public List<penaltyModel> getAllPenalty() {
         return penaltyService.getAllPenalty();
@@ -28,6 +33,17 @@ public class penaltyController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(penalty);
+    }
+    // 차량번호로 검색
+    @GetMapping("/number/{penaltyCarNumber}")
+    public List<penaltyModel> carNumberSearch(@PathVariable("penaltyCarNumber") String penaltyCarNumber) {
+        return penaltyRepository.carNumberSearch(penaltyCarNumber);
+    }
+
+    // 단속날짜로 검색
+    @GetMapping("/date/{penaltyDate}")
+    public List<penaltyModel> penaltyDateSearch(@PathVariable("penaltyDate") String penaltyDate) {
+        return penaltyRepository.penaltyDateSearch(penaltyDate);
     }
 
     @PostMapping("/create")

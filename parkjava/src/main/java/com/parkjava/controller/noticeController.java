@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @CrossOrigin
@@ -25,11 +26,23 @@ public class noticeController {
         return noticerepository.noticeSearchAll();
     }
 
-    // 공지인덱스 상세
-    @GetMapping("/{noticeIndex}")
-    public List<noticeModel> noticeSearchIndex(@PathVariable("noticeIndex") Long noticeIndex) {
+    // 공지 인덱스 상세
+    @GetMapping("/index/{noticeIndex}")
+    public noticeModel noticeSearchIndex(@PathVariable("noticeIndex") Long noticeIndex, String noticeView) {
         return noticerepository.noticeSearchIndex(noticeIndex);
+
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<noticeModel> getUserById(@PathVariable Long id) {
+        noticeModel test = noticeService.getNoticeById(id);
+        if (test == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(test);
+    }
+
+
 
     // 공지 제목으로 검색
     @GetMapping("/title/{noticeTitle}")

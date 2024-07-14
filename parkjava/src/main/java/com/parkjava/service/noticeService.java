@@ -20,6 +20,14 @@ public class noticeService {
     public List<noticeModel> getAllNotices() {
         return noticeRepository.findAll();
     }
+    public noticeModel getNoticeById(long noticeIndex) {
+        noticeModel notice = noticeRepository.findById(noticeIndex).orElse(null);
+        if (notice != null) {
+            notice.setNoticeView(notice.getNoticeView()+1);
+            noticeRepository.save(notice);
+        }
+        return noticeRepository.findById(noticeIndex).orElse(null);
+    }
 
     public noticeModel createNotice(noticeModel notice) {
         return noticeRepository.save(notice);

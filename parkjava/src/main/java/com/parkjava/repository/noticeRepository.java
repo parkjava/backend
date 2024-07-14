@@ -12,13 +12,13 @@ public interface noticeRepository extends JpaRepository<noticeModel, Long> {
     @Query(value = "SELECT * FROM NOTICE", nativeQuery = true)
     List<noticeModel> noticeSearchAll();
 
-    @Query(value = "SELECT * FROM NOTICE WHERE NOTICE_INDEX =: noticeIndex", nativeQuery = true)
-    List<noticeModel> noticeSearchIndex(Long noticeIndex);
+    @Query(value = "SELECT * FROM NOTICE WHERE NOTICE_INDEX = :noticeIndex", nativeQuery = true)
+    noticeModel noticeSearchIndex(Long noticeIndex);
 
-    @Query(value = "SElECT * FROM NOTICE WHERE NOTICE_TITLE = :noticeTitle", nativeQuery = true)
+    @Query(value = "SElECT * FROM NOTICE WHERE NOTICE_TITLE LIKE %:noticeTitle%", nativeQuery = true)
     List<noticeModel> noticeSearchTitle(String noticeTitle);
 
-    @Query(value = "SElECT * FROM NOTICE WHERE ADMIN_NAME = :adminName", nativeQuery = true)
+    @Query(value = "SElECT * FROM NOTICE WHERE ADMIN_NAME LIKE %:adminName%", nativeQuery = true)
     List<noticeModel> noticeSearchName(String adminName);
 
     @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_TITLE ASC", nativeQuery = true)
