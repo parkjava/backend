@@ -14,7 +14,7 @@ public class penaltyModel {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long penaltyIndex;
-    private String carImageUrl;
+    private String penaltyImageUrl;
     private String penaltyCarNumber;
     private String penaltyCash;
     private Date penaltyDate;
