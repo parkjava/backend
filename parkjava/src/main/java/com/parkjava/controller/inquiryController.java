@@ -1,6 +1,7 @@
 package com.parkjava.controller;
 
 import com.parkjava.model.inquiryModel;
+import com.parkjava.repository.inquiryRepository;
 import com.parkjava.service.inquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,17 @@ public class inquiryController {
 
     @Autowired
     private inquiryService inquiryService;
+    @Autowired
+    private inquiryRepository inquiryRepository;
 
     @GetMapping
-    public List<inquiryModel> getAllUsers() {
-        return inquiryService.getAllUsers();
+    public List<inquiryModel> inquiryDESCAll() {
+        return inquiryRepository.inquiryDESCAll();
+    }
+
+    @GetMapping("/asc")
+    public List<inquiryModel> inquiryASCAll() {
+        return inquiryRepository.inquiryASCAll();
     }
 
     @GetMapping("/{inquiryIndex}")
