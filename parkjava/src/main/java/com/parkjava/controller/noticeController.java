@@ -1,13 +1,10 @@
 package com.parkjava.controller;
-
 import com.parkjava.model.noticeModel;
 import com.parkjava.repository.noticeRepository;
 import com.parkjava.service.noticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 import java.util.List;
 
 @CrossOrigin
@@ -17,20 +14,26 @@ public class noticeController {
 
     @Autowired
     private noticeService noticeService;
+
     @Autowired
     private noticeRepository noticerepository;
 
-    // 공지 전체
+    // 공지 전체 최신순
     @GetMapping
-    public List<noticeModel> noticeSearchAll() {
-        return noticerepository.noticeSearchAll();
+    public List<noticeModel> noticeSearchDESCAll() {
+        return noticerepository.noticeSearchDESCAll();
+    }
+
+    // 공지 전체 과거순
+    @GetMapping("/asc")
+    public List<noticeModel> noticeSearchASCAll() {
+        return noticerepository.noticeSearchASCAll();
     }
 
     // 공지 인덱스 상세
     @GetMapping("/index/{noticeIndex}")
     public noticeModel noticeSearchIndex(@PathVariable("noticeIndex") Long noticeIndex, String noticeView) {
         return noticerepository.noticeSearchIndex(noticeIndex);
-
     }
 
     @GetMapping("/{id}")
@@ -41,8 +44,6 @@ public class noticeController {
         }
         return ResponseEntity.ok(test);
     }
-
-
 
     // 공지 제목으로 검색
     @GetMapping("/title/{noticeTitle}")
@@ -100,5 +101,11 @@ public class noticeController {
     @GetMapping("/view/desc")
     public List<noticeModel> noticeViewDescAll() {
         return noticerepository.noticeViewDescAll();
+    }
+
+    // 공지 페이지네이트
+    @GetMapping("/paginate/{limit}/{page}")
+    public  List<noticeModel> noticePaginate(@PathVariable("limit") Integer limit, @PathVariable("page") Integer page) {
+        return noticerepository.noticePaginate(limit, page);
     }
 }

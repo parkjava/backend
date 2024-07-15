@@ -1,6 +1,7 @@
 package com.parkjava.controller;
 
 import com.parkjava.model.patrolModel;
+import com.parkjava.repository.patrolRepository;
 import com.parkjava.service.patrolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,12 @@ public class patrolController {
     @Autowired
     private patrolService patrolService;
 
+    @Autowired
+    private patrolRepository patrolRepository;
+
     @GetMapping
-    public List<patrolModel> getAllPatrols() {
-        return patrolService.getAllPatrols();
+    public List<patrolModel> patrolDESCAll() {
+        return patrolRepository.patrolDESCAll();
     }
 
     @GetMapping("/{patrolIndex}")

@@ -9,8 +9,11 @@ import java.util.List;
 
 @Repository
 public interface noticeRepository extends JpaRepository<noticeModel, Long> {
-    @Query(value = "SELECT * FROM NOTICE", nativeQuery = true)
-    List<noticeModel> noticeSearchAll();
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_INDEX DESC", nativeQuery = true)
+    List<noticeModel> noticeSearchDESCAll();
+
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_INDEX ASC", nativeQuery = true)
+    List<noticeModel> noticeSearchASCAll();
 
     @Query(value = "SELECT * FROM NOTICE WHERE NOTICE_INDEX = :noticeIndex", nativeQuery = true)
     noticeModel noticeSearchIndex(Long noticeIndex);
@@ -32,6 +35,9 @@ public interface noticeRepository extends JpaRepository<noticeModel, Long> {
 
     @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_VIEW DESC", nativeQuery = true)
     List<noticeModel> noticeViewDescAll();
+
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_INDEX DESC LIMIT :limit, :page", nativeQuery = true)
+    List<noticeModel> noticePaginate(int limit, int page);
 
 //    @Query(value ="UPDATE NOTICE SET NOTICE_TITLE= :noticeTitle, NOTICE_CONTENT= :noticeContent, UPDATE_DATE WHERE NOTICE_INDEX =:NOTICE_INDEX", nativeQuery = true)
 //    List<noticeModel> noticeUpdate(String noticeTitle, String noticeContent, Long noticeIndex);

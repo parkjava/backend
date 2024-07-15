@@ -22,8 +22,8 @@ public class penaltyController {
     private penaltyRepository penaltyRepository;
 
     @GetMapping
-    public List<penaltyModel> getAllPenalty() {
-        return penaltyService.getAllPenalty();
+    public List<penaltyModel> carNumberDESCAll() {
+        return penaltyRepository.carNumberDESCAll();
     }
 
     @GetMapping("/{penaltyIndex}")
