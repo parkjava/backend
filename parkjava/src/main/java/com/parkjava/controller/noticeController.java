@@ -103,9 +103,11 @@ public class noticeController {
         return noticerepository.noticeViewDescAll();
     }
 
-    // 공지 페이지네이트
-    @GetMapping("/paginate/{limit}/{page}")
-    public  List<noticeModel> noticePaginate(@PathVariable("limit") Integer limit, @PathVariable("page") Integer page) {
-        return noticerepository.noticePaginate(limit, page);
+    // 공지 페이징
+    // offset = X번째 인덱스(offset) 부터 limit = 조회할 목록의 갯수(limit),
+    // ex) limit = 30 offset = 0 이면 조회한 데이터 0번 에서 30개까지 조회
+    @GetMapping("/paginate/{limit}/{offset}")
+    public  List<noticeModel> noticePaginate(@PathVariable("limit") Integer limit, @PathVariable("offset") Integer offset) {
+        return noticerepository.noticePaginate(limit, offset);
     }
 }

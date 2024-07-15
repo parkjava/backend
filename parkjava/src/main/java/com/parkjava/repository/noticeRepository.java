@@ -36,8 +36,8 @@ public interface noticeRepository extends JpaRepository<noticeModel, Long> {
     @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_VIEW DESC", nativeQuery = true)
     List<noticeModel> noticeViewDescAll();
 
-    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_INDEX DESC LIMIT :limit, :page", nativeQuery = true)
-    List<noticeModel> noticePaginate(int limit, int page);
+    @Query(value = "SELECT * FROM NOTICE ORDER BY NOTICE_INDEX DESC LIMIT :limit OFFSET :offset", nativeQuery = true)
+    List<noticeModel> noticePaginate(int limit, int offset);
 
 //    @Query(value ="UPDATE NOTICE SET NOTICE_TITLE= :noticeTitle, NOTICE_CONTENT= :noticeContent, UPDATE_DATE WHERE NOTICE_INDEX =:NOTICE_INDEX", nativeQuery = true)
 //    List<noticeModel> noticeUpdate(String noticeTitle, String noticeContent, Long noticeIndex);
