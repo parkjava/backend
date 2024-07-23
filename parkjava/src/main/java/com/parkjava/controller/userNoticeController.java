@@ -1,6 +1,5 @@
 package com.parkjava.controller;
 import com.parkjava.model.noticeModel;
-import com.parkjava.model.testModel;
 import com.parkjava.repository.noticeRepository;
 import com.parkjava.service.noticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,8 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/api/notice")
-public class noticeController {
+@RequestMapping("/user/api/notice")
+public class userNoticeController {
 
     @Autowired
     private noticeService noticeService;
@@ -29,12 +28,6 @@ public class noticeController {
     @GetMapping("/asc")
     public List<noticeModel> noticeSearchASCAll() {
         return noticerepository.noticeSearchASCAll();
-    }
-
-    // 공지 인덱스 상세
-    @GetMapping("/index/{noticeIndex}")
-    public noticeModel noticeSearchIndex(@PathVariable("noticeIndex") Long noticeIndex, String noticeView) {
-        return noticerepository.noticeSearchIndex(noticeIndex);
     }
 
     @GetMapping("/{id}")
@@ -56,29 +49,6 @@ public class noticeController {
     @GetMapping("/name/{adminName}")
     public List<noticeModel> noticeSearchName(@PathVariable("adminName") String adminName) {
         return noticerepository.noticeSearchName(adminName);
-    }
-
-    // 공지 생성
-    @PostMapping("/create")
-    public noticeModel createNotice(@RequestBody noticeModel notice) {
-        return noticeService.createNotice(notice);
-    }
-
-    // 공지 수정
-    @PutMapping("/update/{noticeIndex}")
-    public ResponseEntity<noticeModel> updateNotice(@PathVariable Long noticeIndex, @RequestBody noticeModel noticeDetails) {
-        noticeModel updatedTest = noticeService.updateNotice(noticeIndex, noticeDetails);
-        if (updatedTest == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(updatedTest);
-    }
-
-    // 공지 삭제
-    @DeleteMapping("/delete/{noticeIndex}")
-    public ResponseEntity<Void> deleteNotice(@PathVariable Long noticeIndex) {
-        noticeService.deleteNotice(noticeIndex);
-        return ResponseEntity.noContent().build();
     }
 
     // 공지 제목 오름차순 정렬

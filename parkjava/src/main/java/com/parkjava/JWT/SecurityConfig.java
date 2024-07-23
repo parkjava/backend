@@ -33,7 +33,8 @@ public class SecurityConfig {
                         authorizeRequests
                                 // 해당 API에 대해서는 모든 요청을 허가
                                 .requestMatchers("/members/signIn").permitAll()
-//                                .requestMatchers("/api/**").permitAll()
+                                .requestMatchers("/user/api/**").permitAll()
+
                                 // USER 권한이 있어야 요청할 수 있음
                                 .requestMatchers("/api/**").hasRole("USER")
                                 .requestMatchers("/members/test").hasRole("USER")
@@ -42,7 +43,7 @@ public class SecurityConfig {
                                 .anyRequest().authenticated())
                 // JWT 인증을 위하여 직접 구현한 필터를 UsernamePasswordAuthenticationFilter 전에 실행
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
-                // CORS 설정
+                // CORS 설정, 해당 주소에서만 요청 시 허용
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
                     corsConfiguration.setAllowedOrigins(java.util.Collections.singletonList("http://localhost:3000"));
