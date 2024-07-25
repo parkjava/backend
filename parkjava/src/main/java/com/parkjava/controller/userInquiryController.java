@@ -20,8 +20,13 @@ public class userInquiryController {
     private inquiryRepository inquiryRepository;
 
     @GetMapping
-    public List<inquiryModel> inquiryDESCAll() {
+    public List<inquiryModel> inquiryDESCAll(Long inquiryIndex) {
         return inquiryRepository.inquiryDESCAll();
+    }
+
+    @GetMapping("/phone/{inquiryPhone}")
+    public List<inquiryModel> inquiryListAll(@PathVariable String inquiryPhone) {
+        return inquiryRepository.inquiryListAll(inquiryPhone);
     }
 
     @GetMapping("/{inquiryIndex}")
