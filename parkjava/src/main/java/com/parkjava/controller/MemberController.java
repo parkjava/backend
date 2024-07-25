@@ -3,18 +3,10 @@ package com.parkjava.controller;
 import com.parkjava.DTO.JwtToken;
 import com.parkjava.DTO.SecurityUtil;
 import com.parkjava.DTO.SignInDto;
-import com.parkjava.JWT.JwtAuthenticationFilter;
-import com.parkjava.model.Member;
-import com.parkjava.model.adminModel;
 import com.parkjava.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -31,14 +23,18 @@ class MemberController {
         JwtToken jwtToken = memberService.signIn(username, password);
         log.info("request username = {}, password = {}", username, password);
         log.info("jwtToken accessToken = {}, refreshToken = {}", jwtToken.getAccessToken(), jwtToken.getRefreshToken());
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add(httpHeaders.AUTHORIZATION, "Bearer" + jwtToken);
+
         return jwtToken;
     }
 
     @GetMapping("/test")
     public String test() {
-        return "안녕하세요! " + SecurityUtil.getCurrentUsername() + "님" ;
+
+        return SecurityUtil.getCurrentUsername();
+    }
+    @GetMapping("/info")
+    public String info() {
+        return SecurityUtil.getCurrentUsername();
     }
 
 }
