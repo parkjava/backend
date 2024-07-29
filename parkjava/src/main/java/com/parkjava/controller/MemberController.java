@@ -29,9 +29,9 @@ class MemberController {
 
     @GetMapping("/test")
     public String test() {
-
         return SecurityUtil.getCurrentUsername();
     }
+
     @GetMapping("/info")
     public String info() {
         return SecurityUtil.getCurrentUsername();

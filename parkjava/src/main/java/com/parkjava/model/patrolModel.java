@@ -13,8 +13,7 @@ public class patrolModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long patrolIndex;
-    private Integer adminIndex;
-    private String adminName;
+    private String username;
     private String patrolArea;
     private String patrolSummary;
     private String createDate;

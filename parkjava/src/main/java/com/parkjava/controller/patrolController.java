@@ -48,7 +48,7 @@ public class patrolController {
         return ResponseEntity.ok(updatedTest);
     }
 
-    @DeleteMapping("delete/{patrolIndex}")
+    @DeleteMapping("/delete/{patrolIndex}")
     public ResponseEntity<Void> deletePatrol(@PathVariable Long patrolIndex) {
         patrolService.deletePatrol(patrolIndex);
         return ResponseEntity.noContent().build();
