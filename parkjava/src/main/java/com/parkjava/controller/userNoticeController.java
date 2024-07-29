@@ -46,10 +46,10 @@ public class userNoticeController {
     }
 
     // 작성자 이름으로 검색
-    @GetMapping("/name/{adminName}")
-    public List<noticeModel> noticeSearchName(@PathVariable("adminName") String adminName) {
-        return noticerepository.noticeSearchName(adminName);
-    }
+//    @GetMapping("/name/{adminName}")
+//    public List<noticeModel> noticeSearchName(@PathVariable("adminName") String adminName) {
+//        return noticerepository.noticeSearchName(adminName);
+//    }
 
     // 공지 제목 오름차순 정렬
     @GetMapping("/title/asc")

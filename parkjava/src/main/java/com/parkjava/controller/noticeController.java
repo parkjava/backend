@@ -37,9 +37,9 @@ public class noticeController {
         return noticerepository.noticeSearchIndex(noticeIndex);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<noticeModel> getUserById(@PathVariable Long id) {
-        noticeModel test = noticeService.getNoticeById(id);
+    @GetMapping("/{noticeIndex}")
+    public ResponseEntity<noticeModel> getUserById(@PathVariable Long noticeIndex) {
+        noticeModel test = noticeService.getNoticeById(noticeIndex);
         if (test == null) {
             return ResponseEntity.notFound().build();
         }
@@ -53,10 +53,10 @@ public class noticeController {
     }
 
     // 작성자 이름으로 검색
-    @GetMapping("/name/{adminName}")
-    public List<noticeModel> noticeSearchName(@PathVariable("adminName") String adminName) {
-        return noticerepository.noticeSearchName(adminName);
-    }
+//    @GetMapping("/name/{adminName}")
+//    public List<noticeModel> noticeSearchName(@PathVariable("adminName") String adminName) {
+//        return noticerepository.noticeSearchName(adminName);
+//    }
 
     // 공지 생성
     @PostMapping("/create")
