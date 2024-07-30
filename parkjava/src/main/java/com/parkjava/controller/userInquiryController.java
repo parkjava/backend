@@ -39,13 +39,13 @@ public class userInquiryController {
     }
 
     @PostMapping("/create")
-    public inquiryModel createUser(@RequestBody inquiryModel inquiry) {
-        return inquiryService.createUser(inquiry);
+    public inquiryModel createInquiry(@RequestBody inquiryModel inquiry) {
+        return inquiryService.createInquiry(inquiry);
     }
 
     @PutMapping("/update/{inquiryIndex}")
     public ResponseEntity<inquiryModel> updateUser(@PathVariable Long inquiryIndex, @RequestBody inquiryModel inquiryDetails) {
-        inquiryModel updatedTest = inquiryService.updateUser(inquiryIndex, inquiryDetails);
+        inquiryModel updatedTest = inquiryService.updateInquiry(inquiryIndex, inquiryDetails);
         if (updatedTest == null) {
             return ResponseEntity.notFound().build();
         }

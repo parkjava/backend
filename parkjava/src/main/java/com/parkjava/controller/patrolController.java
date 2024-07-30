@@ -25,6 +25,11 @@ public class patrolController {
         return patrolRepository.patrolDESCAll();
     }
 
+    @GetMapping("/asc")
+    public List<patrolModel> patrolASCAll() {
+        return patrolRepository.patrolASCAll();
+    }
+
     @GetMapping("/{patrolIndex}")
     public ResponseEntity<patrolModel> getPatrolById(@PathVariable Long patrolIndex) {
         patrolModel patrol = patrolService.getPatrolById(patrolIndex);

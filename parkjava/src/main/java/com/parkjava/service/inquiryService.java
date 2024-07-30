@@ -21,11 +21,11 @@ public class inquiryService {
         return inquiryRepository.findById(inquiryIndex).orElse(null);
     }
 
-    public inquiryModel createUser(inquiryModel test) {
+    public inquiryModel createInquiry(inquiryModel test) {
         return inquiryRepository.save(test);
     }
 
-    public inquiryModel updateUser(Long id, inquiryModel inquiryDetails) {
+    public inquiryModel updateInquiry(Long id, inquiryModel inquiryDetails) {
         inquiryModel inquiryModel = inquiryRepository.findById(id).orElse(null);
 
         if (inquiryModel != null) {
@@ -41,7 +41,7 @@ public class inquiryService {
         return null;
     }
 
-    public void deleteUser(Long inquiryIndex) {
+    public void deleteInquiry(Long inquiryIndex) {
         inquiryRepository.deleteById(inquiryIndex);
     }
 }
