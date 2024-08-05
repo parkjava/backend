@@ -14,6 +14,9 @@ public interface penaltyRepository extends JpaRepository<penaltyModel, Long>{
     @Query(value="SELECT * FROM PENALTY ORDER BY PENALTY_INDEX DESC", nativeQuery = true)
     List<penaltyModel> carNumberDESCAll();
 
+    @Query(value="SELECT * FROM PENALTY ORDER BY PENALTY_INDEX DESC", nativeQuery = true)
+    List<penaltyModel> carNumberASCAll();
+
     @Query(value = "SElECT * FROM PENALTY WHERE PENALTY_CAR_NUMBER LIKE %:penaltyCarNumber%", nativeQuery = true)
     List<penaltyModel> carNumberSearch(String penaltyCarNumber);
 
