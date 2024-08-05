@@ -21,9 +21,14 @@ public class penaltyController {
     @Autowired
     private penaltyRepository penaltyRepository;
 
-    @GetMapping
+    @GetMapping("/desc")
     public List<penaltyModel> carNumberDESCAll() {
         return penaltyRepository.carNumberDESCAll();
+    }
+
+    @GetMapping("/asc")
+    public List<penaltyModel> carNumberASCAll() {
+        return penaltyRepository.carNumberASCAll();
     }
 
     @GetMapping("/{penaltyIndex}")
