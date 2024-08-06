@@ -7,15 +7,15 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "patrol")
-public class patrolModel {
+@Table(name = "notice")
+public class noticeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patrolIndex;
-    private String username;
-    private String patrolArea;
-    private String patrolSummary;
+    private Long noticeIndex;
+    private String noticeTitle;
+    private String noticeContent;
+    private Integer noticeView;
     private String createDate;
     private String updateDate;
 
