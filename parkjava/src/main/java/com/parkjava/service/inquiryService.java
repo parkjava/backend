@@ -35,6 +35,18 @@ public class inquiryService {
             inquiryModel.setInquiryEmail(inquiryDetails.getInquiryEmail());
             inquiryModel.setInquiryWriter(inquiryDetails.getInquiryWriter());
             inquiryModel.setInquiryDate(inquiryDetails.getInquiryDate());
+            inquiryModel.setInquiryAnswer(inquiryDetails.getInquiryAnswer());
+            return inquiryRepository.save(inquiryModel);
+        }
+
+        return null;
+    }
+
+    public inquiryModel updateAnswer(Long id, inquiryModel inquiryDetails) {
+        inquiryModel inquiryModel = inquiryRepository.findById(id).orElse(null);
+
+        if (inquiryModel != null) {
+            inquiryModel.setInquiryAnswer(inquiryDetails.getInquiryAnswer());
             return inquiryRepository.save(inquiryModel);
         }
 

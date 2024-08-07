@@ -18,4 +18,7 @@ public interface inquiryRepository extends JpaRepository<inquiryModel, Long> {
 
     @Query(value = "SELECT * FROM INQUIRY WHERE INQUIRY_PHONE = :inquiryPhone", nativeQuery = true)
     List<inquiryModel> inquiryListAll(String inquiryPhone);
+
+//    @Query(value = "UPDATE INQUIRY SET INQUIRY_ANSWER = :inquiryAnswer WHERE INQUIRY_INDEX = :inquiryIndex", nativeQuery = true)
+//    inquiryModel inquiryAnswer(Long inquiryIndex);
 }
