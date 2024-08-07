@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -38,6 +39,11 @@ public class inquiryController {
         return ResponseEntity.ok(inquiry);
     }
 
+//    @PostMapping("/create")
+//    public inquiryModel createUser(@RequestBody inquiryModel inquiry) {
+//        return inquiryService.createInquiry(inquiry);
+//    }
+
     @PutMapping("/update/{inquiryIndex}")
     public ResponseEntity<inquiryModel> updateUser(@PathVariable Long inquiryIndex, @RequestBody inquiryModel inquiryDetails) {
         inquiryModel updatedTest = inquiryService.updateInquiry(inquiryIndex, inquiryDetails);
@@ -61,6 +67,11 @@ public class inquiryController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long inquiryIndex) {
         inquiryService.deleteInquiry(inquiryIndex);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/countDate")
+    public List<Map<String,String>> getInquiryCountDate() {
+        return inquiryService.getInquiryCountByDate();
     }
 
 }
