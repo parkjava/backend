@@ -38,11 +38,6 @@ public class inquiryController {
         return ResponseEntity.ok(inquiry);
     }
 
-//    @PostMapping("/create")
-//    public inquiryModel createUser(@RequestBody inquiryModel inquiry) {
-//        return inquiryService.createInquiry(inquiry);
-//    }
-
     @PutMapping("/update/{inquiryIndex}")
     public ResponseEntity<inquiryModel> updateUser(@PathVariable Long inquiryIndex, @RequestBody inquiryModel inquiryDetails) {
         inquiryModel updatedTest = inquiryService.updateInquiry(inquiryIndex, inquiryDetails);
@@ -52,9 +47,20 @@ public class inquiryController {
         return ResponseEntity.ok(updatedTest);
     }
 
+    @PutMapping("/answer/{inquiryIndex}")
+    public ResponseEntity<inquiryModel> updateAnswer(@PathVariable Long inquiryIndex, @RequestBody inquiryModel inquiryDetails) {
+        inquiryModel updatedTest = inquiryService.updateAnswer(inquiryIndex, inquiryDetails);
+        if (updatedTest == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedTest);
+    }
+
+
     @DeleteMapping("/delete/{inquiryIndex}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long inquiryIndex) {
         inquiryService.deleteInquiry(inquiryIndex);
         return ResponseEntity.noContent().build();
     }
+
 }
