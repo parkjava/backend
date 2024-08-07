@@ -26,4 +26,8 @@ public interface penaltyRepository extends JpaRepository<penaltyModel, Long>{
     @Query(value = "SELECT * FROM PENALTY WHERE PENALTY_INDEX =:penaltyIndex", nativeQuery = true)
     List<penaltyModel> penaltyIndexSearch(String penaltyIndex);
 
+//    @Query("SELECT p.penaltyDate, COUNT(p) FROM penaltyModel p GROUP BY p.penaltyDate")
+//    List<Object[]> countPenaltiesByDate();
+    @Query("SELECT DATE(p.penaltyDate) AS penaltyDate, COUNT(p) AS count FROM penaltyModel p GROUP BY DATE(p.penaltyDate)")
+    List<Object[]> countPenaltiesByDate();
 }

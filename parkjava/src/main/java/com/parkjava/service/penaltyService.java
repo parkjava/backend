@@ -5,7 +5,10 @@ import com.parkjava.repository.penaltyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class penaltyService {
@@ -41,5 +44,23 @@ public class penaltyService {
 
     public void deletePenalty(Long penaltyIndex) {
         penaltyRepository.deleteById(penaltyIndex);
+    }
+
+    public List<Map<String,String>> getPenaltiesCountByDate() {
+        List<Object[]> results = penaltyRepository.countPenaltiesByDate();
+        List<Map<String, String>> formattedResults = new ArrayList<>();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Object[] result : results) {
+            Date date = (Date) result[0];
+            Long count = (Long) result[1];
+            Map<String, String> resultMap = new HashMap<>();
+            resultMap.put("penaltyDate", dateFormat.format(date));
+            resultMap.put("count", count.toString());
+            formattedResults.add(resultMap);
+        }
+
+        return formattedResults;
     }
 }

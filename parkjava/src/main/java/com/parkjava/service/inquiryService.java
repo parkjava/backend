@@ -5,7 +5,9 @@ import com.parkjava.repository.inquiryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 
 @Service
 public class inquiryService {
@@ -55,5 +57,22 @@ public class inquiryService {
 
     public void deleteInquiry(Long inquiryIndex) {
         inquiryRepository.deleteById(inquiryIndex);
+    }
+
+    public List<Map<String,String>> getInquiryCountByDate(){
+        List<Object[]> results = inquiryRepository.countInquiryByDate();
+        List<Map<String,String>> inquiryResults = new ArrayList<>();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Object[] result : results) {
+            Date date = (Date) result[0];
+            Long count = (Long) result[1];
+            Map<String,String> resultMap = new HashMap<>();
+            resultMap.put("inquiryDate", dateFormat.format(date));
+            resultMap.put("count", count.toString());
+            inquiryResults.add(resultMap);
+        }
+        return inquiryResults;
     }
 }

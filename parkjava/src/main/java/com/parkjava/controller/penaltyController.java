@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Date;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -70,4 +75,10 @@ public class penaltyController {
         penaltyService.deletePenalty(penaltyIndex);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/countDate")
+    public List<Map<String, String>> getPenaltiesCountByDate() {
+        return penaltyService.getPenaltiesCountByDate();
+    }
+
 }
