@@ -21,5 +21,6 @@ public class inquiryModel {
     private String inquiryEmail;
     private String inquiryPhone;
     private Date inquiryDate;
+    private String inquiryAnswer;
 
 }

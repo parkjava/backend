@@ -35,6 +35,7 @@ public class inquiryService {
             inquiryModel.setInquiryEmail(inquiryDetails.getInquiryEmail());
             inquiryModel.setInquiryWriter(inquiryDetails.getInquiryWriter());
             inquiryModel.setInquiryDate(inquiryDetails.getInquiryDate());
+            inquiryModel.setInquiryAnswer(inquiryDetails.getInquiryAnswer());
             return inquiryRepository.save(inquiryModel);
         }
 
