@@ -42,6 +42,17 @@ public class inquiryService {
         return null;
     }
 
+    public inquiryModel updateAnswer(Long id, inquiryModel inquiryDetails) {
+        inquiryModel inquiryModel = inquiryRepository.findById(id).orElse(null);
+
+        if (inquiryModel != null) {
+            inquiryModel.setInquiryAnswer(inquiryDetails.getInquiryAnswer());
+            return inquiryRepository.save(inquiryModel);
+        }
+
+        return null;
+    }
+
     public void deleteInquiry(Long inquiryIndex) {
         inquiryRepository.deleteById(inquiryIndex);
     }
